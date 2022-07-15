@@ -1,13 +1,14 @@
 pipeline {
     agent any
+    triggers { 
+        pollSCM('*/1 * * * *') 
+    }
     stages {
-        
         stage('Clone') {
             steps{
                 // Get some code from a GitHub repository
                 git 'https://github.com/Amit-Chavda/jenkins_demo_app.git'
             }
-            
         }
         stage('Compile') {
             steps {
@@ -19,6 +20,5 @@ pipeline {
                 bat "java HelloWorld"
             }
         }
-        
     }
 }
